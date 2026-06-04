@@ -646,6 +646,83 @@ Recommended scope keys in commit titles:
 - Prefer squash merge with conventional commit title.
 - Revert fast on regressions; re-land with tests.
 
+## Adding Ternary Skills to Hermit-Claw
+
+Hermit-claw is the ZeroClaw fork that bridges the ternary intelligence ecosystem with the agent runtime. Ternary skills teach the agent how to reason using {-1, 0, +1} = {avoid, unknown, choose} strategies.
+
+### Skill Structure
+
+Every ternary skill lives under `skills/<name>/SKILL.md`:
+
+```text
+skills/
+├── ternary-intelligence/SKILL.md   # Reasoning skill
+└── ternary-builder/SKILL.md       # Development skill
+```
+
+### SKILL.md Requirements
+
+A ternary skill must include:
+
+1. **YAML frontmatter** with `name`, `description`, and `metadata`
+2. **"When to Use" section** — clear activation criteria (✅ use / ❌ don't use)
+3. **Core model explanation** — how the ternary {-1, 0, +1} model applies
+4. **Practical patterns** — step-by-step procedures with examples
+5. **Crate reference table** — which crates power this skill, with version numbers
+6. **Failure modes** — what goes wrong and how to recover
+
+### Naming Conventions
+
+| Pattern | Example | Use For |
+|---------|---------|----------|
+| `ternary-*` | `ternary-intelligence`, `ternary-builder` | Core ternary skills |
+| `*-avoidance` | (future) | Avoidance-specific skills |
+| `*-conservation` | (future) | Conservation verification skills |
+
+### Crate References
+
+When a skill uses ternary crates, list them with version numbers:
+
+```markdown
+| Crate | Version | Purpose |
+|-------|---------|----------|
+| `ternary-inference` | 0.1.x | Core reasoning |
+```
+
+### Testing a New Skill
+
+```bash
+# Symlink into your OpenClaw/ZeroClaw skills directory
+ln -s "$(pwd)/skills/your-skill" ~/.openclaw/skills/
+
+# Verify registration
+openclaw skills list  # or: zeroclaw skills list
+
+# Trigger the skill with a matching request
+openclaw agent -m "Help me evaluate these options using ternary strategies"
+```
+
+### Registering the Skill
+
+After creating a skill:
+
+1. Add it to the table in [SKILLS-REGISTRY.md](SKILLS-REGISTRY.md)
+2. Update the skill ↔ crate mapping diagram
+3. Mention it in [README.md](README.md) if it's user-facing
+4. Include it in your commit message (e.g., `feat(skills): add ternary-avoidance skill`)
+
+### Ternary Crate Publishing
+
+New ternary crates should:
+
+1. Follow the `ternary-builder` skill templates
+2. Have ≥15 tests (unit, edge, conservation, cascade, property)
+3. Publish to crates.io under `SuperInstance`
+4. Push to `https://github.com/SuperInstance/<crate-name>`
+5. Update all skill crate tables with the new crate and version
+
+---
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.

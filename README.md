@@ -225,6 +225,27 @@ Use this board for important notices (breaking changes, security advisories, mai
 - **Fully swappable:** core systems are traits (providers, channels, tools, memory, tunnels).
 - **No lock-in:** OpenAI-compatible provider support + pluggable custom endpoints.
 
+### Ternary Intelligence Integration
+
+Hermit-claw ships with **ternary intelligence skills** that teach the agent to reason using {-1, 0, +1} = {avoid, unknown, choose} strategies. This is the bridge between the [ternary ecosystem crates](https://github.com/orgs/SuperInstance/repositories) and the agent runtime.
+
+**What it does:**
+- **Smarter decisions** — the agent learns what to *avoid*, not just what to choose (294:1 avoidance ratio)
+- **Conservation-verified reasoning** — key metrics stay stable from 10 to 5,000 agents
+- **Ecological strategy balance** — five strategy species coexist naturally, no single one dominates
+- **Cascade resistance** — built-in safeguards prevent the system from learning to avoid everything
+
+**Included skills:**
+
+| Skill | Purpose |
+|-------|----------|
+| `ternary-intelligence` | Reasoning, classification, trade-off analysis, conservation verification |
+| `ternary-builder` | Templates and conventions for building new ternary crates |
+
+**Powering crates** (all on crates.io): `avoidance-cascade`, `conservation-matrix`, `strategy-ecology`, `ternary-fitness`, `negative-space-core`, `ternary-inference`, `lotka-volterra-agents`, `evolution-ternary`
+
+See [INTEGRATION.md](INTEGRATION.md) for architecture details and [SKILLS-REGISTRY.md](SKILLS-REGISTRY.md) for the full skill ↔ crate mapping.
+
 ## Benchmark Snapshot (ZeroClaw vs OpenClaw, Reproducible)
 
 Local machine quick benchmark (macOS arm64, Feb 2026) normalized for 0.8GHz edge hardware.
